@@ -155,7 +155,7 @@ model.evaluate(x_test, y_test_one_hot)[1]
 
 
 # In[135]:
-
+from threading import Thread
 
 plt.plot(hist.history['accuracy'])
 plt.plot(hist.history['val_accuracy'])
@@ -163,7 +163,9 @@ plt.title('Model accuracy')
 plt.ylabel('Accuracy')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'val'], loc = "upper right")
-plt.show()
+t1 = Thread(target=plt.show())
+t1.start()
+t1.join()
 
 
 # In[167]:
@@ -175,14 +177,16 @@ plt.title('Model loss')
 plt.ylabel('Loss')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'val'], loc = "upper right")
-plt.show()
+t2 = Thread(target=plt.show())
+t2.start()
+t2.join()
 
 
 # In[173]:
 
 
 #Ejemplo
-n_img= plt.imread('bolso.jpg')
+n_img= plt.imread('test_img.jpg')
 img = plt.imshow(n_img)
 
 
